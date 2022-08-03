@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet"> 
+    <title>Day 2</title>
+    <style>
+        
+        /* :root {
+            --line-border-fill: green;
+            --line-border-empty: azure;
+        } */
+
+        body {
+            display: flex;
+            margin: 0;
+            padding: 40vh 0;
+            background-color: yellowgreen;
+            font-family: 'Open Sans', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        section {
+            width: auto;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .progress-container {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 20px;
+            width: 400px;
+            max-width: 100%;
+        }
+
+        .progress-container::before {
+            content: '';
+            background-color: azure;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 4px;
+            width: 100%;
+
+            z-index: -2;
+            transform: translateY(-50%);
+        }
+
+        .progress {
+            background-color: green;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 4px;
+            width: 50%;
+
+            z-index: -1;
+            transform: translateY(-50%);
+            transition: all .55s;
+        }
+
+        .circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            width: 30px;
+            height: 30px;
+            color: slategray;
+            border: 3px solid azure;
+            border-radius: 50%;
+            background-color: azure;
+
+            transition: all .55s ease;
+        }
+
+        .circle.active {
+            border-color: green;
+        }
+
+        .btn {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            margin: 10px;
+            cursor: pointer;
+            padding: 4px 8px;
+            outline: 0;
+            border-radius: 4px;
+            border: 3px solid azure;
+            background-color: azure;
+            transition: all .5s;
+        }
+
+        .btn:hover {
+            color: azure;
+            background-color: yellowgreen;
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <div class="progress-container">
+            <div class="progress" id="progress"></div>
+            <div class="circle active">1</div>
+            <div class="circle">2</div>
+            <div class="circle">3</div>
+            <div class="circle">4</div>
+            <div class="circle">5</div>
+        </div>
+        <button class="btn" id="prev" disabled>Previous</button>
+        <button class="btn" id="next">Next</button>
+    </section>
+</body>
+<script>
+    const progress = document.getElementById('progress');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const circle = document.querySelectorAll('.circle');
+
+    let currentActive = 0;
+
+    prev.addEventListener('click', () => {
+        currentActive--;
+
+        if (currentActive < 1) {
+            currentActive = 1
+        }
+
+        update();
+    });
+
+    next.addEventListener('click', () => {
+        currentActive++;
+
+        if (currentActive > circle.length) {
+            currentActive = circle.length
+        }
+
+        update();
+    });
+
+    function update() {
+        circle.forEach((circle, idx) => {
+            if (idx < currentActive) {
+                circle.classList.add('active');
+            } else {
+                circle.classList.remove('active');
+            }
+        })
+        
+        const actives = document.querySelectorAll('.active');
+        
+        progress.style.width = (((actives.length - 1) / (circle.length - 1)) * 100 + '%');
+        
+        if (currentActive === 1) {
+            prev.disabled = true;
+        } else if (currentActive === circle.length) {
+            next.disabled = true;
+        } else {
+            prev.disabled = false;
+            next.disabled = false;
+        }
+    }
+        
+</script>
+</html>
