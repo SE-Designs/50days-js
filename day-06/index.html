@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet"> 
+    <title>Day 6</title>
+    <style>
+
+        body {
+            font-family: 'Bungee', cursive;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 0;
+            padding: 20px 0;
+            overflow-x: hidden;
+            background-color: azure;
+        }
+
+        .box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+            width: 400px;
+            height: 200px;
+            border-radius: 10px;
+            filter: contrast(120%);
+            background-color: black;
+            box-shadow: inset 0 0 40px black;
+            border: 2px solid black;
+            transition: all 0.6s ease;
+        }
+
+        .box:nth-of-type(odd) {
+            transform: translateX(250%);
+        }
+
+        .box:nth-of-type(even) {
+            transform: translateX(-250%);
+        }
+
+        .box:first-of-type {
+            background: center center / cover url(https://cdn.cloudflare.steamstatic.com/steam/apps/730/ss_d196d945c6170e9cadaf67a6dea675bd5fa7a046.1920x1080.jpg?t=1641233427) no-repeat;
+        }
+
+        .box:nth-of-type(2) {
+            background: center center / cover url(https://c4.wallpaperflare.com/wallpaper/825/375/685/dota-2-wallpaper-preview.jpg) no-repeat;
+        }
+
+        .box:nth-of-type(3) {
+            background: center center / cover url(https://imageio.forbes.com/specials-images/imageserve/62635fa25b28562e4bdfe6c9/Brigitte--Zenyatta-and-Sojourn-in-Overwatch-2/960x0.jpg?format=jpg&width=960) no-repeat;
+        }
+
+        .box:nth-of-type(4) {
+            background: center center / cover url(https://asset.vg247.com/warcraft_3_reforged-31.jpg/BROK/thumbnail/1600x900/quality/100/warcraft_3_reforged-31.jpg) no-repeat;
+        }
+
+        .box:nth-of-type(5) {
+            background: center center / cover url(https://cdn.2kgames.com/web/common/images/evolve_keyart_L_2.jpg) no-repeat;
+        }
+
+        .box:nth-of-type(6) {
+            background: center center / cover url(https://cdn2.unrealengine.com/13br-evergreens-blue-newsheader-1920x1080-864336340.jpg) no-repeat;
+        }
+
+        .box:nth-of-type(7) {
+            background: center center / cover url(https://cdn.givemesport.com/wp-content/uploads/2022/03/Rainbow-Six-Siege-scaled.jpeg);
+        }
+
+        .box:nth-of-type(8) {
+            background: center center / cover url(https://cdn.dnaindia.com/sites/default/files/styles/full/public/2022/02/04/1018898-garenanewwwww.jpg);
+        }
+
+        .box:nth-of-type(9) {
+            background: center center / cover url(https://mobidictum.biz/wp-content/uploads/2021/01/pubg-mobile-ipo.jpg);
+        }
+
+        h2 {
+            color: aliceblue;
+            opacity: 0.8;
+            padding: 0 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-shadow: 0 0 5px aliceblue;
+            border-radius: 14px;
+            /* filter: invert(0%); */
+        }
+
+        .box.show {
+            transform: translateX(0);
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Scroll down to see the animation</h1>
+    <div class="box"><h2>CS:GO</h2></div>
+    <div class="box"><h2>Dota 2</h2></div>
+    <div class="box"><h2>Overwatch</h2></div>
+    <div class="box"><h2>Warcraft 3</h2></div>
+    <div class="box"><h2>Evolve</h2></div>
+    <div class="box"><h2>Fortnite</h2></div>
+    <div class="box"><h2>R6 Siege</h2></div>
+    <div class="box"><h2>Free Fire</h2></div>
+    <div class="box"><h2>PUBG</h2></div>
+</body>
+<script>
+    const boxes = document.querySelectorAll('.box');
+
+    window.addEventListener('scroll', checkBoxes)
+
+    checkBoxes();
+
+    function checkBoxes() {
+        const triggerBottom = (window.innerHeight / 6 * 5)
+
+        boxes.forEach(box => {
+            const boxTopValue = box.getBoundingClientRect().top;
+
+            if (boxTopValue < triggerBottom) {
+                box.classList.add('show');
+            } else {
+                box.classList.remove('show');
+            }
+        })
+    }
+</script>
+</html>
