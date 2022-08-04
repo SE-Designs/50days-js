@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <title>Day 3</title>
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Oxygen', sans-serif;
+            overflow-x: hidden;
+            width: 100%;
+            height: 100vh;
+            background-color: bisque;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 100vw;
+            min-height: 100vh;
+            padding: 50px;
+            transform-origin: top left;
+            transition: all .5s ease;
+        }
+
+        .content {
+            width: 90vw;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #db3d24;
+            font-size: 1.25em;
+        }
+
+        .img {
+            padding: 40px 120px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            min-width: 240px;
+        }
+
+        small {
+            font-weight: 700;
+            color: #222;
+            font-style: italic;
+        }
+
+        p {
+            opacity: 0.8;
+        }
+
+        /* NAVBAR */
+
+        .container.show-nav {
+            transform: rotate(-20deg);
+            /* overflow: hidden; */
+        }
+
+        .container.show-nav .circle {
+            transform: rotate(-70deg);
+        }
+
+        .container.show-nav + nav li {
+            transform: translateX(0);
+            transition-delay: 0.3s;
+        }
+
+        .circle-container {
+            position: fixed;
+            top: -100px;
+            left: -100px;
+        }
+
+        .circle {
+            position: relative;
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            background-color: #db3d24;
+
+            transition: all .55s ease;
+        }
+
+        .circle button {
+            cursor: pointer;
+            position: absolute;
+            top: 45%;
+            left: 55%;
+            height: 100px;
+            font-size: 24px;
+            color: aliceblue;
+            border: 0;
+            padding: 0;
+            background-color: transparent;
+        }
+
+        .circle button:focus {
+            outline: 0;
+        }
+
+        #open {
+            left: 60%;
+        }
+
+        #close {
+            top: 60%;
+            transform: rotate(90deg);
+            transform-origin: top left;
+        }
+
+        nav {
+            position: fixed;
+            bottom: 40px;
+            left: 0;
+            z-index: 1;
+        }
+
+        nav ul {
+            list-style: none;
+            padding-left: 40px;
+        }
+
+        nav ul li {
+            font-weight: 700;
+            opacity: 0.8;
+            margin: 40px 0;
+            text-transform: uppercase;
+            transform: translateX(-250%);
+            transition: all .55s ease;
+        }
+
+        nav li i {
+            position: relative;
+            top: 2px;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        nav li + li {
+            margin-left: 10px;
+        }
+
+        nav li + li + li {
+            margin-left: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="circle-container">
+            <div class="circle">
+                <button id="close">
+                    <i class='bx bx-x'></i>
+                </button>
+                <button id="open">
+                    <i class='bx bx-menu' ></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="content">
+            <h1>Yoo, thats my article!</h1>
+            <small>by Jane Doe</small>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis iure maxime 
+                sed, incidunt consequuntur neque ipsum eum libero possimus repellat odio facilis 
+                velit voluptatem amet similique autem quod quibusdam quia asperiores! Pariatur 
+                nulla odit expedita, fugiat ab aliquam ipsa hic soluta voluptates, atque labore 
+                explicabo libero? Nemo expedita adipisci deserunt neque consectetur tenetur, 
+                obcaecati a qui rerum! Sint, possimus quaerat deleniti, non odio consequuntur 
+                laudantium distinctio debitis atque in hic exercitationem eveniet error accusantium 
+                asperiores doloribus velit aliquid quos, molestias qui officiis at quo! Quos ipsa 
+                doloribus aliquid debitis, dignissimos, perferendis dolore esse fugiat facilis ipsum 
+                assumenda totam consequatur sapiente.</p>
+            
+            <h3>Outer Worlds</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis ullam saepe debitis 
+                quis, corrupti nulla eius placeat odio quos consequuntur!</p>
+            <div class="img">
+                <img src="https://cdn.wccftech.com/wp-content/uploads/2022/07/EVOLVE.jpg" alt="">
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga et accusamus pariatur 
+                cum sapiente, enim officiis dolor odit dicta dolorem eum. Eius velit natus pariatur 
+                facilis enim. Eligendi iste mollitia quod, neque adipisci consequuntur ipsam quaerat 
+                nobis aut ducimus, sunt architecto officia possimus quam sint laudantium nostrum. Quasi 
+                rem perferendis, fugit, autem a voluptatibus doloribus illum doloremque debitis aliquam 
+                ut.</p>
+            <br>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet laboriosam et ex dicta
+                dolore dolores rerum fuga vero, id pariatur earum! Sequi nulla odit sed non? Ratione
+                perferendis praesentium sunt corporis fugit laboriosam sed eaque consequuntur culpa iusto 
+                nemo commodi expedita vel nesciunt laborum nulla, numquam illum laudantium? Ipsum alias 
+                voluptates dicta totam nesciunt provident error recusandae deserunt beatae. Laudantium 
+                aspernatur soluta sequi accusantium officiis ab iste modi corrupti, excepturi saepe 
+                voluptatibus reiciendis, nulla laboriosam ipsa libero. Quibusdam porro amet assumenda 
+                cumque fugit! Magni illo recusandae tempora, veritatis ratione ea minus omnis, mollitia 
+                magnam dolore ex, dignissimos doloremque corporis odit beatae iste blanditiis sapiente. 
+                Sunt dolore sapiente hic dolorem ipsa tempore, iusto odio dolores ut reiciendis, 
+                consequuntur, qui molestias? Atque?</p>
+            <!-- <img src="" alt=""> -->
+        </div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><i class='bx bx-home-alt-2'></i> Home</li>
+            <li><i class='bx bx-info-circle'></i> About</li>
+            <li><i class='bx bx-phone'></i> Contact</li>
+        </ul>
+    </nav>
+</body>
+<script>
+    const open = document.querySelector('#open');
+    const close = document.querySelector('#close');
+    const container = document.querySelector('.container');
+
+    open.addEventListener('click', () => {
+        container.classList.add('show-nav');
+        // document.body.style.overflowY = 'hidden';
+    })
+
+    close.addEventListener('click', () => {
+        container.classList.remove('show-nav');
+        // document.body.style.overflowY = 'auto';
+    })
+</script>
+</html>
