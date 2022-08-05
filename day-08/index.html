@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <title>Day 8</title>
+    <style>
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background: center center / cover url(1.jpg);
+        }
+
+        .container {
+            width: fit-content;
+            margin: 200px auto;
+            display: flex;
+            flex-flow: column nowrap;
+            padding: 20px;
+
+            background: rgba(255, 255, 255, 0.27);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5.5px);
+            -webkit-backdrop-filter: blur(5.5px);
+            border: 1px solid rgba(255, 255, 255, 0.27);
+        }
+
+        h1 {
+            color: rgba(255, 255, 255, 0.82);
+            text-align: center;
+        }
+
+        .form-control {
+            display: flex;
+            flex-flow: column nowrap;
+            position: relative;
+            margin: 5px 0;
+        }
+        
+        form {
+            max-width: 240px;
+            display: flex;
+            flex-flow: column nowrap;
+        }
+
+        input {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.77);
+            padding: 4px 0;
+            background: transparent;
+            /* background: rgba(255, 255, 255, 0.27); */
+            /* border-radius: 4px; */
+            /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+            backdrop-filter: blur(5.5px);
+            -webkit-backdrop-filter: blur(5.5px);
+            border: 0 solid rgba(255, 255, 255, 0.27);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.27);
+            margin-top: 20px;
+        }
+
+        input:focus, input:valid {
+            outline: 0;
+            border-bottom-color: lightblue;
+        }
+
+        label {
+            font-size: 12px;
+            position: absolute;
+            top: 15px;
+            left: 0;
+        }
+
+        .btn {
+            margin-top: 20px;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.77);
+            cursor: pointer;
+            padding: 6px;
+            background: rgba(255, 255, 255, 0.27);
+            border-radius: 4px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5.5px);
+            -webkit-backdrop-filter: blur(5.5px);
+            border: 1px solid rgba(255, 255, 255, 0.27);
+            transition: all .55s;
+        }
+
+        .btn:hover {
+            color: rgba(25, 25, 25, 0.87);
+            background: rgba(255, 255, 255, 0.57);
+        }
+
+        .signup {
+            font-style: italic;
+            text-align: center;
+            margin: 20px 20px 0 20px;
+            font-size: 12px;
+        }
+
+        .signup a {
+            font-size: 14px;
+            font-style: normal;
+            color: rgba(20, 45, 101, 0.8);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .form-control label span {
+            font-weight: 300;
+            display: inline-block;
+            font-size: 14px;
+            min-width: 5px;
+            transition: all .25s cubic-bezier(0.75, -0.5, 0.265, 1.55);
+        }
+
+        .form-control input:focus + label span,
+        .form-control input:valid + label span {
+            color: lightblue;
+            transform: translateY(-20px);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login Now</h1>
+        <form action="#">
+            <div class="form-control">
+                <input type="text" name="username" id="username" required>
+                <label>Username</label>
+            </div>
+            <div class="form-control">
+                <input type="password" name="password" id="password" required>
+                <label>Password</label>
+            </div>
+
+            <button class="btn">Login</button>
+
+            <span class="signup">Don't have an account? <a href="#">Register Now</a></span>
+        </form>
+    </div>
+</body>
+<script>
+    const labels = document.querySelectorAll('.form-control label');
+
+    labels.forEach(label => {
+        label.innerHTML = label.innerText
+            .split('')
+            .map((letter, idx) => `<span style="transition-delay: ${idx * 15}ms">${letter}</span>`)
+            .join('')
+    })
+
+</script>
+</html>
