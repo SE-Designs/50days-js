@@ -10,6 +10,12 @@
     <title>Day 7</title>
     <style>
 
+        :root {
+            --hover-width: 60%;
+            --other-width: 40%;
+            --speed: 2500ms;
+        }
+
         body {
             font-family: 'Bungee', cursive;
             margin: 0;
@@ -23,6 +29,7 @@
             flex-flow: row nowrap;
             height: 100vh;
             position: relative;
+            background-color: #111;
         }
 
         .split {
@@ -30,6 +37,7 @@
             width: 50%;
             height: 100%;
             overflow: hidden;
+            transition: all var(--speed) cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         .left {
@@ -41,7 +49,7 @@
         
         .right {
             right: 0;
-            box-shadow: inset 0 0 120px black;
+            box-shadow: inset 0 0 40px black;
             background: center center / cover url(moscow.jpg) no-repeat;
         }
         
@@ -68,24 +76,38 @@
             color: azure;
             padding: 4px 16px;
             border: 3px solid azure;
-            transition: all .55s;
             background-color: transparent;
             mix-blend-mode: soft-light; 
         }
+
+        .hover-left .left {
+            width: var(--hover-width);
+        }
+
+        .hover-left .right {
+            width: var(--other-width);
+        }
+
+        .hover-right .left {
+            width: var(--other-width);
+        }
         
+        .hover-right .right {
+            width: var(--hover-width);
+        }
 
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container hover-right">
         <div class="split left">
             <h2>France, Paris</h2>
             <h2>France, Paris</h2>
             <h2>France, Paris</h2>
             <h2>France, Paris</h2>
-            <button href="/" class="btn">Learn More</button>
-            <button href="/" class="btn">Learn More</button>
-            <button href="/" class="btn">Learn More</button>
+            <button href="/" class="btn">Visit Now</button>
+            <button href="/" class="btn">Visit Now</button>
+            <button href="/" class="btn">Visit Now</button>
         </div>
 
         <div class="split right">
@@ -93,13 +115,31 @@
             <h2>Russia, Moscow</h2>
             <h2>Russia, Moscow</h2>
             <h2>Russia, Moscow</h2>
-            <button href="/" class="btn">Learn More</button>
-            <button href="/" class="btn">Learn More</button>
-            <button href="/" class="btn">Learn More</button>
+            <button href="/" class="btn">Visit Now</button>
+            <button href="/" class="btn">Visit Now</button>
+            <button href="/" class="btn">Visit Now</button>
         </div>
     </div>
 </body>
 <script>
+    const left = document.querySelector('.left');
+    const right = document.querySelector('.right');
+    const container = document.querySelector('.container');
 
+    left.addEventListener('mouseenter', () => {
+        container.classList.add('hover-left');
+    })
+
+    left.addEventListener('mouseleave', () => {
+        container.classList.remove('hover-left');
+    })
+
+    right.addEventListener('mouseenter', () => {
+        container.classList.add('hover-right');
+    })
+
+    right.addEventListener('mouseleave', () => {
+        container.classList.remove('hover-right');
+    })
 </script>
 </html>
