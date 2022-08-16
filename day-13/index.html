@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Day 13</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+        font-family: "Josefin Sans", sans-serif;
+        text-align: center;
+        width: 100vw;
+        height: 100vh;
+        margin: 0 auto;
+        overflow: hidden;
+        background: radial-gradient(ellipse at top, #e66465, transparent),
+          radial-gradient(ellipse at bottom, #7ce824, transparent);
+      }
+
+      .container {
+        width: 40%;
+        min-width: 200px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        mix-blend-mode: overlay;
+      }
+
+      h2 {
+        mix-blend-mode: soft-light;
+      }
+
+      h3 {
+        font-style: italic;
+      }
+
+      h3:focus {
+        outline: none;
+      }
+
+      textarea {
+        width: 200px;
+        margin: 10px 0;
+        padding: 4px;
+        letter-spacing: 2px;
+        font-weight: 700;
+        text-align: center;
+        border: 2px solid transparent;
+        background-color: rgba(255, 255, 255, 0.5);
+        transition: all 0.25s;
+        resize: vertical;
+      }
+
+      textarea:focus {
+        outline: none;
+        border: 2px solid #111;
+      }
+
+      .tags {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .tag {
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 6px;
+        padding: 12px;
+        border-radius: 6px;
+        background-color: #7ce824;
+        transition: all 0.1s;
+      }
+
+      .highlight {
+        background-color: #e66465;
+      }
+
+      .result {
+        font-size: 3rem;
+        margin: 20px 0;
+        mix-blend-mode: overlay;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Random Picker</h1>
+      <h2>
+        Enter all of the choices divided by a comma (','). <br />Press enter
+        when you're done!
+      </h2>
+      <h3 contenteditable>Who are you?</h3>
+      <textarea
+        name="text"
+        id="textarea"
+        rows="4"
+        cols="10"
+        aria-expanded="false"
+        placeholder="Enter all choices"
+      ></textarea>
+
+      <div class="tags" id="tags"></div>
+      <div class="result" id="result"></div>
+    </div>
+  </body>
+  <script>
+    const tagsElement = document.querySelector("#tags");
+    const textarea = document.querySelector("#textarea");
+
+    textarea.focus();
+
+    function createTags(input) {
+      const tags = input
+        .split(" ")
+        .filter((tag) => tag.trim() !== "")
+        .map((tag) => tag.trim());
+
+      tagsElement.innerHTML = "";
+
+      tags.forEach((tag) => {
+        const el = document.createElement("span");
+        el.classList.add("tag");
+        el.innerText = tag;
+        tagsElement.appendChild(el);
+      });
+    }
+
+    function randomSelection() {
+      const times = 30;
+
+      const interval = setInterval(() => {
+        const randomTag = pickRandomTag();
+
+        highlightTag(randomTag);
+
+        setTimeout(() => {
+          unHighlightTag(randomTag);
+        }, 100);
+      }, 100);
+
+      setTimeout(() => {
+        clearInterval(interval);
+
+        setTimeout(() => {
+          const randomTag = pickRandomTag();
+
+          highlightTag(randomTag);
+        }, 100);
+      }, times * 100);
+
+      setTimeout(() => {
+        setResult();
+      }, 3500);
+    }
+
+    function pickRandomTag() {
+      const tags = document.querySelectorAll(".tag");
+      return tags[Math.floor(Math.random() * tags.length)];
+    }
+
+    function highlightTag(tag) {
+      tag.classList.add("highlight");
+    }
+
+    function unHighlightTag(tag) {
+      tag.classList.remove("highlight");
+    }
+
+    function setResult() {
+      const tag = document.querySelector(".highlight");
+      const result = document.getElementById("result");
+      result.innerHTML = tag.innerText;
+    }
+
+    textarea.addEventListener("keyup", (e) => {
+      createTags(e.target.value);
+
+      if (e.key === "Enter") {
+        setTimeout(() => {
+          e.target.value = "";
+        }, 10);
+        randomSelection();
+      }
+    });
+  </script>
+</html>
