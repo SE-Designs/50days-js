@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Day 11</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+        font-family: "Roboto", sans-serif;
+        text-align: center;
+        margin: 0 auto;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background: center center / cover
+          url(https://images.unsplash.com/photo-1658242094232-0cacdec9fe55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTU4MTd8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NjA2MzQwMjQ&ixlib=rb-1.2.1&q=80&w=1080)
+          no-repeat;
+      }
+
+      .container {
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .key {
+        width: 30%;
+        min-width: 120px;
+        color: rgba(0, 0, 0, 0.8);
+        background: rgba(255, 255, 255, 0.23);
+        border-radius: 4px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        display: inline-flex;
+        flex-flow: column wrap;
+        align-items: center;
+        font-size: 20px;
+        padding: 20px;
+        margin: 20px;
+        font-weight: 700;
+        position: relative;
+      }
+
+      .key:last-of-type {
+        display: block;
+        margin: 20px auto;
+        width: fit-content;
+      }
+
+      small {
+        position: absolute;
+        top: -25px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        text-shadow: 0 0 20px #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="insert">
+      <div class="key">Press any key to get the keycode</div>
+    </div>
+  </body>
+  <script>
+    const insert = document.getElementById("insert");
+
+    window.addEventListener("keydown", (e) => {
+      insert.innerHTML = `
+      <div class="key">${
+        e.key === " " ? "Space" : e.key
+      }<small>event.key</small></div>
+      <div class="key">${e.keyCode}<small>event.keyCode</small></div>
+      <div class="key">${e.code}<small>event.code</small></div>`;
+    });
+  </script>
+</html>
