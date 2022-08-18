@@ -10,6 +10,66 @@
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="style.css" />
+    <title>Day 13</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Random Picker</h1>
+      <h2>
+        Enter all of the choices divided by a comma (','). <br />Press enter
+        when you're done!
+      </h2>
+      <div class="mini-container">
+        <input
+          class="question"
+          type="text"
+          name="text"
+          id="question"
+          value="Who are you?"
+        />
+        <textarea
+          name="text"
+          id="textarea"
+          rows="4"
+          cols="10"
+          aria-expanded="false"
+          placeholder="Enter all choices"
+        ></textarea>
+      </div>
+
+      <div class="tags" id="tags"></div>
+      <div class="result" id="result"></div>
+
+      <div class="lastResults">
+        <table cellspacing="0" class="table display-none">
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>All Choices</th>
+              <th>Answer</th>
+            </tr>
+          </thead>
+          <tbody class="result-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap"
+      rel="stylesheet"
+    />
     <title>Day 13</title>
     <style>
       * {
@@ -26,7 +86,8 @@
         width: 100vw;
         height: 100vh;
         margin: 0 auto;
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: auto;
         background: radial-gradient(ellipse at top, #e66465, transparent),
           radial-gradient(ellipse at bottom, #7ce824, transparent);
       }
@@ -45,12 +106,17 @@
         mix-blend-mode: soft-light;
       }
 
-      h3 {
-        font-style: italic;
+      .mini-container {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
       }
 
-      h3:focus {
-        outline: none;
+      .question {
+        all: unset;
+        font-style: italic;
+        margin: 10px 0;
       }
 
       textarea {
@@ -84,18 +150,26 @@
         margin: 6px;
         padding: 12px;
         border-radius: 6px;
-        background-color: #7ce824;
+        background-color: #e66465;
         transition: all 0.1s;
       }
 
       .highlight {
-        background-color: #e66465;
+        background-color: #7ce824;
       }
 
       .result {
         font-size: 3rem;
         margin: 20px 0;
         mix-blend-mode: overlay;
+      }
+
+      th {
+        border-bottom: 1px solid #111;
+      }
+
+      td {
+        border: 1px solid #111;
       }
     </style>
   </head>
@@ -106,24 +180,38 @@
         Enter all of the choices divided by a comma (','). <br />Press enter
         when you're done!
       </h2>
-      <h3 contenteditable>Who are you?</h3>
-      <textarea
-        name="text"
-        id="textarea"
-        rows="4"
-        cols="10"
-        aria-expanded="false"
-        placeholder="Enter all choices"
-      ></textarea>
+      <div class="mini-container">
+        <input
+          class="question"
+          type="text"
+          name="text"
+          id="question"
+          value="Who are you?"
+        />
+        <textarea
+          name="text"
+          id="textarea"
+          rows="4"
+          cols="10"
+          aria-expanded="false"
+          placeholder="Enter all choices"
+        ></textarea>
+      </div>
 
       <div class="tags" id="tags"></div>
       <div class="result" id="result"></div>
+
+      <div class="lastResults"></div>
     </div>
   </body>
   <script>
+    const question = document.querySelector("#question");
     const tagsElement = document.querySelector("#tags");
     const textarea = document.querySelector("#textarea");
+    const result = document.querySelector("#result");
+    const lastResultsDiv = document.querySelector(".lastResults");
 
+    let lastResults = [];
     textarea.focus();
 
     function createTags(input) {
@@ -187,17 +275,59 @@
       const tag = document.querySelector(".highlight");
       const result = document.getElementById("result");
       result.innerHTML = tag.innerText;
+
+      // lastResults.push(
+      //   `Question: ${question.value}; All Choices: ${textarea.value}; Result: ${tag.innerText}`
+      // );
+
+      const td = lastResults.push(`
+        <tr>
+          <td>${question.value}</td>
+          <td>${textarea.value}</td>
+          <td>${tag.innerText}</td>
+        </tr>
+      `);
+
+      lastResults.forEach((element) => {
+        for (let i = 0; i < 3; i++) {}
+      });
+
+      // lastResults.forEach((el) => {
+      //   let tr = document.createElement("tr");
+      //   tr.innerHTML = `<td>${el.question}</td>`;
+      // });
+
+      lastResultsDiv.innerHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>Question</th>
+            <th>All Choices</th>
+            <th>Answer</th>
+          </tr>
+        </thead>
+        <tbody class="result-tbody">
+            ${td}
+        </tbody>
+      </table>
+      `;
+
+      const resultBody = document.querySelector(".result-tbody");
+      resultBody.appendChild(td);
+
+      lastResultsDiv.appendChild(table);
+
+      textarea.value = "";
+      // lastResultsDiv.innerHTML = lastResults;
     }
 
     textarea.addEventListener("keyup", (e) => {
       createTags(e.target.value);
 
       if (e.key === "Enter") {
-        setTimeout(() => {
-          e.target.value = "";
-        }, 10);
         randomSelection();
       }
     });
+    // acool duck1en ismanarayev hasan turaj derhan mixture rshezarr abutalif toxic
   </script>
-</html>
+</html> -->
