@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Day 19</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-color: #111;
+        --secondary-color: #f1f1f1;
+        --primary-opacity: rgba(17, 17, 17, 0.7);
+        --secondary-opacity: rgba(241, 241, 241, 0.7);
+      }
+
+      html {
+        transition: all 0.5s ease-in;
+      }
+
+      html.dark {
+        --primary-color: #f1f1f1;
+        --secondary-color: #111;
+        --primary-opacity: rgba(241, 241, 241, 0.25);
+        --secondary-opacity: rgba(17, 17, 17, 0.25);
+      }
+
+      html.dark {
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+      }
+
+      body {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        font-family: "Titillium Web", sans-serif;
+        text-align: center;
+        margin: 0 auto;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background-color: var(--secondary-color);
+      }
+
+      .toggle {
+        margin-bottom: 40px;
+        cursor: pointer;
+        font-weight: 700;
+        color: var(--secondary-color);
+        background-color: var(--primary-color);
+        border: 0;
+        border-radius: 4px;
+        padding: 8px 12px;
+        transition: all 0.5s;
+      }
+
+      .toggle:focus {
+        outline: none;
+      }
+
+      .clock-container {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.5s;
+      }
+
+      .clock {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        padding: 10px;
+        margin: 20px;
+        border-radius: 50%;
+        opacity: 0.9;
+        background-color: var(--secondary-opacity);
+        box-shadow: 0 0 40px var(--primary-opacity);
+        transition: all 0.5s;
+      }
+
+      .needle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 3px;
+        background-color: var(--primary-color);
+        transform-origin: bottom center;
+        /* COULD BE ADDED */
+        /* transition: all 0.5s ease-in; */
+      }
+
+      .needle.hour {
+        height: 45px;
+        transform: translate(-50%, -100%) rotate(0deg);
+      }
+
+      .needle.minute {
+        height: 60px;
+        transform: translate(-50%, -100%) rotate(0deg);
+      }
+
+      .needle.second {
+        height: 80px;
+        background-color: #e74c3c;
+        transform: translate(-50%, -100%) rotate(0deg);
+      }
+
+      .center-point {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #e74c3c;
+        transform: translate(-50%, -50%);
+      }
+
+      .center-point::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: rgba(42, 42, 42, 0.7);
+        transform: translate(-50%, -50%);
+      }
+
+      .time {
+        font-size: 4rem;
+        transition: all 0.5s;
+      }
+
+      .date {
+        font-weight: 700;
+        color: var(--primary-color);
+        font-size: 0.875rem;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        transition: all 0.5s;
+      }
+
+      .date .circle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.75rem;
+        margin-left: 4px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        line-height: 18px;
+        color: var(--secondary-color);
+        background-color: var(--primary-color);
+        transition: all 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="toggle">Dark Mode</button>
+
+    <div class="clock-container">
+      <div class="clock">
+        <div class="needle hour"></div>
+        <div class="needle minute"></div>
+        <div class="needle second"></div>
+        <div class="center-point"></div>
+      </div>
+
+      <div class="time"></div>
+      <div class="date"><span class="circle"></span></div>
+    </div>
+  </body>
+  <script>
+    const hourElement = document.querySelector(".hour");
+    const minuteElement = document.querySelector(".minute");
+    const secondElement = document.querySelector(".second");
+
+    const timeElement = document.querySelector(".time");
+    const dateElement = document.querySelector(".date");
+    const toggle = document.querySelector(".toggle");
+
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    // DARK MODE:
+    toggle.addEventListener("click", (e) => {
+      const html = document.querySelector("html");
+      if (html.classList.contains("dark")) {
+        html.classList.remove("dark");
+        e.target.innerHTML = "Dark Mode";
+      } else {
+        html.classList.add("dark");
+        e.target.innerHTML = "Light Mode";
+      }
+    });
+
+    // TIME:
+    function setTime() {
+      const time = new Date();
+      const month = time.getMonth();
+      const day = time.getDay();
+      const date = time.getDate();
+      const hours = time.getHours();
+      const hoursForClock = hours % 12;
+      const minutes = time.getMinutes();
+      const seconds = time.getSeconds();
+
+      timeElement.innerHTML = `${hours}:${
+        minutes < 10 ? `0${minutes}` : minutes
+      }`;
+
+      dateElement.innerHTML = `${days[day]}, ${months[month]} <span class="circle">${date}</span>`;
+
+      hourElement.style.transform = `translate(-50%, -100%) rotate(${scale(
+        hoursForClock,
+        0,
+        11,
+        0,
+        360
+      )}deg)`;
+
+      minuteElement.style.transform = `translate(-50%, -100%) rotate(${scale(
+        minutes,
+        0,
+        59,
+        0,
+        360
+      )}deg)`;
+
+      secondElement.style.transform = `translate(-50%, -100%) rotate(${scale(
+        seconds,
+        0,
+        59,
+        0,
+        360
+      )}deg)`;
+    }
+
+    const scale = (num, in_min, in_max, out_min, out_max) => {
+      return (
+        ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+      );
+    };
+
+    setInterval(() => {
+      setTime();
+    }, 1000);
+  </script>
+</html>
