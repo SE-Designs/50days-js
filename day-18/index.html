@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Day 18</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Fira Sans", sans-serif;
+        color: aliceblue;
+        text-align: center;
+        margin: 0 auto;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background: center center / cover
+          url("img/louise-burton-jOto3alJjEg-unsplash.jpg") no-repeat;
+        box-shadow: inset 0 0 40px rgba(0, 0, 0, 1);
+
+        transition: all 0.4s;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.2);
+
+        z-index: -1;
+      }
+
+      .slider-container {
+        position: relative;
+        overflow: hidden;
+        width: 80%;
+        height: 80%;
+        margin: 0 auto;
+        box-shadow: 0 0 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .slide {
+        opacity: 0;
+        height: 100vh;
+        width: 100vw;
+        background-position: center center;
+        background-size: cover;
+        position: absolute;
+        top: -10vh;
+        left: -10vw;
+        transition: 0.4s ease;
+        z-index: 1;
+      }
+
+      .slide.active {
+        opacity: 1;
+      }
+
+      .slide h2 {
+        position: absolute;
+        bottom: 20vh;
+        left: 20vw;
+        z-index: 5;
+
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .block {
+        cursor: pointer;
+        width: 200px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+      }
+
+      .left-block {
+        left: 0;
+      }
+
+      .left-block:hover .arrow-left {
+        color: rgba(14, 39, 121, 1);
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+
+      .right-block {
+        right: 0;
+      }
+
+      .right-block:hover .arrow-right {
+        color: rgba(14, 39, 121, 1);
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+
+      .btn {
+        color: rgba(14, 39, 121, 0.75);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 40px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        border: 2px solid rgba(255, 255, 255, 0);
+        background-color: rgba(255, 255, 255, 0.2);
+
+        transition: all 0.6s;
+      }
+
+      .btn:focus {
+        outline: none;
+      }
+
+      .arrow-left {
+        position: absolute;
+        top: calc(50% - 20px);
+        left: 60px;
+      }
+
+      .arrow-right {
+        position: absolute;
+        top: calc(50% - 20px);
+        right: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider-container">
+      <div
+        class="slide active"
+        style="
+          background-image: url('img/louise-burton-jOto3alJjEg-unsplash.jpg');
+        "
+      >
+        <h2>Building Better Solutions</h2>
+      </div>
+
+      <div
+        class="slide"
+        style="
+          background-image: url('img/andrea-de-santis-UUxUbU_Za3k-unsplash.jpg');
+        "
+      >
+        <h2>Creating New Opportunities</h2>
+      </div>
+
+      <div
+        class="slide"
+        style="
+          background-image: url('img/nathan-watson-a4Goc6z9eQs-unsplash.jpg');
+        "
+      >
+        <h2>Making New World</h2>
+      </div>
+
+      <div
+        class="slide"
+        style="
+          background-image: url('img/refargotohp-x8dTKZ5IWp0-unsplash.jpg');
+        "
+      >
+        <h2>Developing New Realities</h2>
+      </div>
+
+      <div
+        class="slide"
+        style="
+          background-image: url('img/tigran-kharatyan-h76dS0rVziY-unsplash.jpg');
+        "
+      >
+        <h2>Building technologies that help people</h2>
+      </div>
+
+      <div class="left-block block" id="btn-left">
+        <button class="btn arrow-left">
+          <i class="bx bx-left-arrow"></i>
+        </button>
+      </div>
+      <div class="right-block block" id="btn-right">
+        <button class="btn arrow-right">
+          <i class="bx bx-right-arrow"></i>
+        </button>
+      </div>
+    </div>
+  </body>
+  <script>
+    const body = document.body;
+    const slides = document.querySelectorAll(".slide");
+    const btnLeft = document.querySelector("#btn-left");
+    const btnRight = document.querySelector("#btn-right");
+
+    let activeSlide = 0;
+
+    btnLeft.addEventListener("click", () => {
+      activeSlide--;
+
+      if (activeSlide < 0) {
+        activeSlide = slides.length - 1;
+      }
+
+      setBackToBody();
+      setActiveSlide();
+    });
+
+    btnRight.addEventListener("click", () => {
+      activeSlide++;
+
+      if (activeSlide > slides.length - 1) {
+        activeSlide = 0;
+      }
+
+      setBackToBody();
+      setActiveSlide();
+    });
+
+    function setBackToBody() {
+      body.style.backgroundImage = slides[activeSlide].style.backgroundImage;
+    }
+
+    function setActiveSlide() {
+      slides.forEach((slide) => {
+        slide.classList.remove("active");
+      });
+
+      slides[activeSlide].classList.add("active");
+    }
+  </script>
+</html>
