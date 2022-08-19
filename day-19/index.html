@@ -242,7 +242,7 @@
       const minutes = time.getMinutes();
       const seconds = time.getSeconds();
 
-      timeElement.innerHTML = `${hours}:${
+      timeElement.innerHTML = `${hours == 0 ? "00" : hours}:${
         minutes < 10 ? `0${minutes}` : minutes
       }`;
 
