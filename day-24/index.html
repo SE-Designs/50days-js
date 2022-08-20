@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <title>Day 24</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: space-around;
+        color: #fff;
+        font-family: "Montserrat", sans-serif;
+        text-align: center;
+        margin: 0;
+        width: 100vw;
+        padding: 20px 40px 40px 40px;
+        height: 100vh;
+        overflow: hidden;
+        background: linear-gradient(45deg, rgb(72, 25, 243), rgb(15, 108, 238));
+      }
+
+      .card {
+        display: flex;
+        flex-flow: column wrap;
+        width: 300px;
+        background-color: rgb(21, 16, 114);
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 40px rgba(22, 18, 96, 0.5);
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .card-header {
+        height: 200px;
+      }
+
+      .card-header {
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 30px;
+        text-align: left;
+      }
+
+      .card-description {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .card-title {
+        font-family: "JetBrains Mono", monospace;
+        margin: 0 0 10px 0;
+      }
+
+      .author {
+        display: flex;
+        flex-flow: row nowrap;
+      }
+
+      .author-info {
+        width: 120px;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: start;
+        justify-content: space-around;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .author-info small {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .profile-img {
+        width: 40px;
+        height: 40px;
+        margin-right: 20px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      /* STYLING LOAD */
+
+      .animated-bg {
+        background-image: linear-gradient(
+          to right,
+          #f6f7f8 0%,
+          #edeef1 10%,
+          #f6f7f8 20%,
+          #f6f7f8 100%
+        );
+        background-size: 200% 100%;
+        animation: bgPos 1s linear infinite;
+      }
+
+      .animated-bg-text {
+        border-radius: 50px;
+        display: inline-block;
+        margin: 0;
+        height: 10px;
+        width: 100%;
+      }
+
+      @keyframes bgPos {
+        0% {
+          background-position: 50% 0;
+        }
+
+        100% {
+          background-position: -150% 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-header animated-bg" id="header">&nbsp;</div>
+
+      <div class="card-content">
+        <h3 class="card-title animated-bg animated-bg-text" id="title">
+          &nbsp;
+        </h3>
+        <p class="card-description" id="description">
+          &nbsp;
+          <span class="animated-bg animated-bg-text">&nbsp;</span>
+          <span class="animated-bg animated-bg-text">&nbsp;</span>
+          <span class="animated-bg animated-bg-text">&nbsp;</span>
+        </p>
+        <div class="author">
+          <div class="profile-img animated-bg" id="profile_img">&nbsp;</div>
+          <div class="author-info">
+            <strong class="animated-bg animated-bg-text" id="name"
+              >&nbsp;</strong
+            >
+
+            <small class="animated-bg animated-bg-text" id="date">&nbsp;</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const header = document.getElementById("header");
+    const title = document.getElementById("title");
+    const description = document.getElementById("description");
+    const profile_img = document.getElementById("profile_img");
+    const name = document.getElementById("name");
+    const date = document.getElementById("date");
+
+    const animatedBg = document.querySelectorAll(".animated-bg");
+    const animatedBgText = document.querySelectorAll(".animated-bg-text");
+
+    setTimeout(getData, 2500);
+
+    function getData() {
+      header.innerHTML =
+        '<img src="https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""/>';
+      title.innerHTML = "Lorem ipsum dolor";
+      description.innerHTML =
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit accusamus eum deserunt odit rerum ab!";
+      profile_img.innerHTML =
+        '<img src="https:randomuser.me/api/portraits/men/52.jpg" alt="" />';
+      name.innerHTML = "John Doe";
+      date.innerHTML = "Oct 08, 2012";
+
+      animatedBg.forEach((bg) => bg.classList.remove("animated-bg"));
+      animatedBgText.forEach((bg) => bg.classList.remove("animated-bg-text"));
+    }
+  </script>
+</html>
