@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Day 22</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: space-around;
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        text-align: center;
+        margin: 0;
+        width: 100vw;
+        padding: 20px 40px 40px 40px;
+        height: 100vh;
+        overflow: hidden;
+        background: center center / cover url("back.jpg") no-repeat;
+      }
+
+      h1 {
+        color: aliceblue;
+        mix-blend-mode: overlay;
+        margin: 0;
+      }
+
+      .canvas {
+        /* mix-blend-mode: overlay; */
+        background-color: rgba(255, 255, 255, 0.2);
+        width: calc(100% - 40px);
+        height: calc(100% - 120px);
+        border-radius: 10px;
+        margin: 20px;
+      }
+
+      .toolbox {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        padding: 2px 10px;
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+
+      .btn {
+        width: 40px;
+        height: 40px;
+        margin: 10px;
+        padding: 8px;
+        font-weight: 700;
+        cursor: pointer;
+        border-radius: 4px;
+        border: 3px solid rgba(0, 0, 0, 0.7);
+        background-color: transparent;
+      }
+
+      .btn:focus {
+        outline: none;
+      }
+
+      .color:focus {
+        outline: none;
+      }
+
+      .size {
+        margin: 0 10px;
+        font-size: 2rem;
+      }
+
+      .color {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+        padding: 2px;
+      }
+
+      @media only screen and (max-width: 480px) {
+        body {
+          padding: 20px 10px 40px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Paint Online v1</h1>
+    <canvas class="canvas" id="canvas"> </canvas>
+    <div class="toolbox">
+      <button class="btn" id="decrease">-</button>
+      <span class="size" id="size">NaN</span>
+      <button class="btn" id="increase">+</button>
+
+      <input class="color" type="color" name="color" id="color" />
+      <button class="btn" id="clear">X</button>
+    </div>
+  </body>
+  <script>
+    const decrease = document.getElementById("decrease");
+    const sizeElement = document.getElementById("size");
+    const increase = document.getElementById("increase");
+    const colorElement = document.getElementById("color");
+    const clear = document.getElementById("clear");
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    let x;
+    let y;
+    let isPressed = false;
+    let size = 5;
+    let color = "black";
+    colorElement.value = color;
+
+    canvas.addEventListener("mousedown", (e) => {
+      isPressed = true;
+
+      x = e.offsetX;
+      y = e.offsetY;
+
+      console.log(isPressed, x, y);
+    });
+
+    canvas.addEventListener("mouseup", (e) => {
+      isPressed = false;
+
+      x = undefined;
+      y = undefined;
+
+      console.log(isPressed, x, y);
+    });
+
+    canvas.addEventListener("mousemove", (e) => {
+      if (isPressed) {
+        const x2 = e.offsetX;
+        const y2 = e.offsetY;
+        console.log(isPressed, x2, y2);
+        drawCircle(x2, y2);
+        drawLine(x, y, x2, y2);
+
+        x = x2;
+        y = y2;
+      }
+    });
+
+    function drawCircle(x, y) {
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+
+    function drawLine(x1, y1, x2, y2) {
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = size * 2;
+      ctx.stroke();
+    }
+
+    updateSize();
+
+    decrease.addEventListener("click", () => {
+      size -= 2.5;
+
+      if (size <= 2.5) {
+        size = 2.5;
+      }
+
+      updateSize();
+    });
+
+    increase.addEventListener("click", () => {
+      size += 2.5;
+
+      if (size >= 50) {
+        size = 50;
+      }
+
+      updateSize();
+    });
+
+    function updateSize() {
+      sizeElement.innerText = size;
+    }
+
+    colorElement.addEventListener("change", (e) => {
+      color = e.target.value;
+    });
+
+    clear.addEventListener("click", clearCanvas);
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  </script>
+</html>
