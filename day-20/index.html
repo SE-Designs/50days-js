@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <title>Day 20</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-family: "Share Tech Mono", monospace;
+        text-align: center;
+        margin: 0 auto;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        color: aliceblue;
+        background-color: #111;
+      }
+
+      .btn {
+        cursor: pointer;
+        font-size: 0.875rem;
+        color: aliceblue;
+        background-color: orchid;
+        margin: 10px 0;
+        padding: 20px 30px;
+        border: 0;
+        border-radius: 4px;
+        overflow: hidden;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        position: relative;
+        transition: all 0.4s;
+      }
+
+      .btn:hover {
+        background-color: rgba(218, 112, 214, 0.9);
+      }
+
+      .btn:focus {
+        outline: none;
+      }
+
+      .circle {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.4);
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        animation: scale 0.5s ease;
+      }
+
+      @keyframes scale {
+        to {
+          transform: translate(-50%, -50%) scale(3);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Button Ripple Effect</h1>
+    <button class="btn" id="btn">
+      Click Me</span>
+    </button>
+  </body>
+  <script>
+    const btn = document.querySelectorAll('#btn');
+
+    btn.forEach((button) => {
+      button.addEventListener('click', function(e) {
+        const x = e.clientX;
+        const y = e.clientY;
+        // console.log(x, y);
+        const btnTop = e.target.offsetTop;
+        const btnLeft = e.target.offsetLeft;
+        // console.log(btnLeft, btnTop);
+        const xInside = x - btnLeft
+        const yInside = y - btnTop
+        // console.log(xInside, yInside);
+        const ripple = document.createElement('span');
+        ripple.classList.add('circle');
+        ripple.style.left = xInside + 'px';
+        ripple.style.top = yInside + 'px';
+
+        this.appendChild(ripple);
+        setTimeout(() => {
+          ripple.remove()
+        }, 500);
+      });
+    });
+  </script>
+</html>
