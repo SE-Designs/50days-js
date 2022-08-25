@@ -32,14 +32,7 @@
       .main {
         width: 100%;
         height: 100%;
-      }
-
-      .slider-container {
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        position: relative;
+        background-color: #000;
       }
 
       .img-wrapper {
@@ -54,104 +47,177 @@
 
       .img-1,
       .side-1 {
-        background: center center / cover url("imgs/back1.jpg") no-repeat #fff;
+        background: center center / cover url("imgs/back1.jpg") no-repeat #000;
       }
 
       .side-1 {
-        top: 0;
+        top: -100%;
         right: 0;
       }
 
       .img-2,
       .side-2 {
-        background: center center / cover url("imgs/back2.jpg") no-repeat #fff;
+        background: center center / cover url("imgs/back2.jpg") no-repeat #000;
       }
 
       .side-2 {
-        top: -100%;
+        top: -200%;
         right: 0;
       }
 
       .img-3,
       .side-3 {
-        background: center center / cover url("imgs/back3.jpg") no-repeat #fff;
+        background: center center / cover url("imgs/back3.jpg") no-repeat #000;
       }
 
       .side-3 {
-        top: -200%;
+        top: -300%;
         right: 0;
       }
 
       .img-4,
       .side-4 {
-        background: center center / cover url("imgs/back4.jpg") no-repeat #fff;
+        background: center center / cover url("imgs/back4.jpg") no-repeat #000;
       }
 
       .side-4 {
-        top: -300%;
+        top: -400%;
         right: 0;
       }
 
       .img-5,
       .side-5 {
-        background: center center / cover url("imgs/back5.jpg") no-repeat #fff;
+        background: center center / cover url("imgs/back5.jpg") no-repeat #000;
       }
 
       .side-5 {
-        top: -400%;
+        top: -500%;
         right: 0;
       }
 
+      .left-side-container {
+        width: 100%;
+        height: fit-content;
+        position: relative;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: flex-start;
+        background-color: rgba(0, 0, 0, 0.25);
+        transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+
+      .right-side-container {
+        width: 100%;
+        height: fit-content;
+        position: relative;
+        top: -500%;
+        left: 0;
+        display: flex;
+        flex-flow: column-reverse nowrap;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+        transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+
       .left-side {
-        font-size: 1.5rem;
+        width: 100%;
+        min-width: 260px;
+        height: 100vh;
         display: flex;
         flex-flow: column nowrap;
         justify-content: flex-start;
-        align-items: flex-end;
-        position: absolute;
-        top: 0;
+        align-items: flex-start;
+        position: relative;
+        top: 0%;
         left: 0;
-        width: 40%;
-        min-width: 260px;
-        height: 100vh;
         padding: 120px 40px;
-        background-color: rgba(255, 255, 255, 0.25);
         mix-blend-mode: overlay;
-        box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
         word-break: break-word;
         line-height: 0.9;
+        font-size: 1.5rem;
+        box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
       }
 
       .right-side {
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
-        position: absolute;
+        position: relative;
         width: 100%;
         height: 100vh;
         z-index: 2;
         padding: 60px;
         font-size: 2rem;
+        box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
       }
 
       h2 {
         margin: 0;
-        color: rgba(255, 255, 255, 0.95);
-        text-shadow: 0 0 40px #fff;
+        letter-spacing: -2px;
       }
 
       h3 {
         margin: 30px 0 10px 0;
-        color: rgba(0, 0, 0, 1);
         line-height: 0.8;
+        padding: 14px;
       }
 
       small {
+        opacity: 0.8;
         font-weight: 700;
-        color: rgba(255, 255, 255, 1);
         font-size: 0.75em;
-        margin: 0;
+        margin: 4px 0;
         text-shadow: 0 0 40px #000;
+      }
+
+      .img-1 h2,
+      .img-1 small {
+        color: #c3e6e6;
+      }
+
+      .side-1 h3 {
+        color: rgba(255, 255, 255, 0.85);
+        mix-blend-mode: overlay;
+      }
+
+      .img-2 h2,
+      .img-2 small {
+        color: #7a230c;
+      }
+
+      .side-2 h3 {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .img-3 h2,
+      .img-3 small {
+        color: #002a25;
+      }
+
+      .side-3 h3 {
+        mix-blend-mode: overlay;
+      }
+
+      .img-4 h2,
+      .img-4 small {
+        color: #36517e;
+      }
+
+      .side-4 h3 {
+        color: rgba(5, 9, 43, 0.9);
+      }
+
+      .img-5 h2,
+      .img-5 small {
+        color: #431656;
+      }
+
+      .side-5 h3 {
+        color: rgba(255, 255, 255, 0.6);
       }
 
       .btn {
@@ -174,7 +240,7 @@
         position: absolute;
         top: 50%;
         left: 40%;
-        z-index: 5;
+        z-index: 10;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       }
 
@@ -184,6 +250,16 @@
 
       .ArrowDown {
         transform: translate(-50%, +60%);
+      }
+
+      span {
+        color: #fff;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        opacity: 0.7;
       }
 
       @media only screen and (max-width: 880px) {
@@ -220,63 +296,46 @@
     <btn class="btn ArrowDown" id="ArrowDown"
       ><i class="bx bx-chevron-down"></i
     ></btn>
-    <main class="main" id="main">
-      <div class="slider-container slide-1" id="slides">
-        <div class="img-wrapper img-1" id="img-wrapper">
-          <aside class="left-side" id="left-side">
+    <main class="main">
+      <span>By SE-Designs</span>
+      <div class="img-wrapper">
+        <div class="left-side-container" id="left-side-container">
+          <aside class="left-side img-1">
             <h2>Custom Gray</h2>
             <small>Daniel Leone</small>
           </aside>
-        </div>
-        <aside class="right-side side-1" id="right-side">
-          <h3>Kangchenjunga</h3>
-        </aside>
-      </div>
-
-      <div class="slider-container slide-2" id="slides">
-        <div class="img-wrapper img-2" id="img-wrapper">
-          <aside class="left-side" id="left-side">
+          <aside class="left-side img-2">
             <h2>Dark Orange</h2>
             <small>Cristina Gottardi</small>
           </aside>
-        </div>
-        <aside class="right-side side-2" id="right-side">
-          <h3>Dhaulagiri V</h3>
-        </aside>
-      </div>
-
-      <div class="slider-container slide-3" id="slides">
-        <div class="img-wrapper img-3" id="img-wrapper">
-          <aside class="left-side" id="left-side">
-            <h2>Sea Blue</h2>
+          <aside class="left-side img-3">
+            <h2>Sea Black</h2>
             <small>Joel Vodell</small>
           </aside>
-        </div>
-        <aside class="right-side side-3" id="right-side">
-          <h3>Haramosh Peak</h3>
-        </aside>
-      </div>
-
-      <div class="slider-container slide-4" id="slides">
-        <div class="img-wrapper img-4" id="img-wrapper">
-          <aside class="left-side" id="left-side">
-            <h2>Mountain White</h2>
+          <aside class="left-side img-4">
+            <h2>Mountain Blue</h2>
             <small>Rohit Tandon</small>
           </aside>
-        </div>
-        <aside class="right-side side-4" id="right-side">
-          <h3>Mount Everest</h3>
-        </aside>
-      </div>
-
-      <div class="slider-container slide-5" id="slides">
-        <div class="img-wrapper img-5" id="img-wrapper">
-          <aside class="left-side" id="left-side">
+          <aside class="left-side img-5">
             <h2>Rainbow Purple</h2>
             <small>Sasha Freemind</small>
           </aside>
         </div>
-        <aside class="right-side side-5" id="right-side">
+      </div>
+      <div class="right-side-container" id="right-side-container">
+        <aside class="right-side side-1">
+          <h3>Kangchenjunga</h3>
+        </aside>
+        <aside class="right-side side-2">
+          <h3>Dhaulagiri V</h3>
+        </aside>
+        <aside class="right-side side-3">
+          <h3>Haramosh Peak</h3>
+        </aside>
+        <aside class="right-side side-4">
+          <h3>Mount Everest</h3>
+        </aside>
+        <aside class="right-side side-5">
           <h3>Chomo Lonzo</h3>
         </aside>
       </div>
@@ -286,7 +345,8 @@
     let i = 0;
     const arrowUp = document.getElementById("ArrowUp");
     const arrowDown = document.getElementById("ArrowDown");
-    const slider = document.getElementById("slider-container");
+    const leftSideContainer = document.getElementById("left-side-container");
+    const rightSideContainer = document.getElementById("right-side-container");
 
     arrowUp.addEventListener("click", () => {
       i--;
@@ -303,8 +363,9 @@
       } else if (i > 4) {
         i = 0;
       }
-      const url = `imgs/back${i + 1}.jpg`;
-      slider.style.backgroundImage = `url(${url})`;
+
+      rightSideContainer.style.top = -500 + i * 100 + "%";
+      leftSideContainer.style.top = i * -100 + "%";
     }
   </script>
 </html>
@@ -313,156 +374,3 @@
 <!-- BACK3 - Joel Vodell -->
 <!-- BACK4 - Rohit Tandon -->
 <!-- BACK5 - Sasha Freemind -->
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <title>Day 26</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-        font-family: "Space Mono", monospace;
-      }
-
-      .slider-container {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        background: center center / cover no-repeat #fff;
-      }
-
-      .left-side {
-        font-size: 1.5rem;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: flex-start;
-        align-items: flex-end;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 40%;
-        min-width: 260px;
-        height: 100vh;
-        padding: 120px 40px;
-        background-color: rgba(255, 255, 255, 0.25);
-        mix-blend-mode: overlay;
-        box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
-        word-break: break-word;
-        line-height: 0.9;
-      }
-
-      h2 {
-        margin: 0;
-        color: rgba(255, 255, 255, 0.95);
-        text-shadow: 0 0 40px #fff;
-      }
-
-      p {
-        margin: 30px 0 10px 0;
-        color: rgba(0, 0, 0, 1);
-      }
-
-      small {
-        font-weight: 700;
-        color: rgba(255, 255, 255, 1);
-        font-size: 0.75em;
-        margin: 0;
-        text-shadow: 0 0 40px #000;
-      }
-
-      .btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        color: rgba(0, 0, 0, 0.8);
-        background-color: rgba(255, 255, 255, 0.85);
-        position: absolute;
-        top: 50%;
-        left: 40%;
-        z-index: 1;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      }
-
-      .ArrowUp {
-        transform: translate(-50%, -60%);
-      }
-
-      .ArrowDown {
-        transform: translate(-50%, +60%);
-      }
-
-      @media only screen and (max-width: 620px) {
-        .left-side {
-          font-size: 1rem;
-          justify-content: flex-start;
-          align-items: flex-start;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="slider-container" id="slider-container">
-      <btn class="btn ArrowUp" id="ArrowUp"
-        ><i class="bx bx-chevron-up"></i
-      ></btn>
-      <btn class="btn ArrowDown" id="ArrowDown"
-        ><i class="bx bx-chevron-down"></i
-      ></btn>
-      <aside class="left-side">
-        <h2>Custom Gray</h2>
-        <p>Kangchenjunga</p>
-        <small>Daniel Leone</small>
-      </aside>
-    </div>
-  </body>
-  <script>
-    let i = 0;
-    const arrowUp = document.getElementById("ArrowUp");
-    const arrowDown = document.getElementById("ArrowDown");
-    const slider = document.getElementById("slider-container");
-
-    arrowUp.addEventListener("click", () => {
-      i--;
-      scrollTo();
-    });
-    arrowDown.addEventListener("click", () => {
-      i++;
-      scrollTo();
-    });
-
-    function scrollTo() {
-      if (i < 0) {
-        i = 4;
-      } else if (i > 4) {
-        i = 0;
-      }
-      const url = `imgs/back${i + 1}.jpg`;
-      slider.style.backgroundImage = `url(${url})`;
-    }
-  </script>
-</html> -->
