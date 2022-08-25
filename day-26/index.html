@@ -357,6 +357,41 @@
       scrollTo();
     });
 
+    document.addEventListener("keyup", (e) => {
+      if (e.code === "ArrowUp") {
+        i--;
+        scrollTo();
+      }
+
+      if (e.code === "ArrowDown" || e.code === "ArrowRight") {
+        i++;
+        scrollTo();
+      }
+
+      switch (e.code) {
+        case "Digit1":
+          i = 0;
+          scrollTo();
+          break;
+        case "Digit2":
+          i = 1;
+          scrollTo();
+          break;
+        case "Digit3":
+          i = 2;
+          scrollTo();
+          break;
+        case "Digit4":
+          i = 3;
+          scrollTo();
+          break;
+        case "Digit5":
+          i = 4;
+          scrollTo();
+          break;
+      }
+    });
+
     function scrollTo() {
       if (i < 0) {
         i = 4;
