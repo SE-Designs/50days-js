@@ -108,14 +108,18 @@
     function createNotification() {
       const notification = document.createElement("div");
       notification.classList.add("toast");
-      notification.innerHTML = getRandomNotification();
-      toasts.append(notification);
+      notification.innerText = getRandomNotification();
+
       const progress = document.createElement("div");
       progress.classList.add("toast-progress");
+
       notification.appendChild(progress);
+      toasts.appendChild(notification);
+
       setTimeout(() => {
-        progress.style.width = 0 + "%";
-      }, 0);
+        progress.style.width = "0%";
+      }, 100);
+
       setTimeout(() => {
         notification.style.opacity = 0;
         setTimeout(() => {
