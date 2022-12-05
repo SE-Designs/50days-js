@@ -1,0 +1,85 @@
+:root {
+  --hover-width: 60%;
+  --other-width: 40%;
+  --speed: 2500ms;
+}
+
+body {
+  font-family: "Bungee", cursive;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: azure;
+}
+
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100vh;
+  position: relative;
+  background-color: #111;
+}
+
+.split {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: all var(--speed) cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.left {
+  left: 0;
+  box-shadow: inset 0 0 40px black;
+  filter: contrast(1.4);
+  background: bottom center / cover url(paris.jpg) no-repeat;
+}
+
+.right {
+  right: 0;
+  box-shadow: inset 0 0 40px black;
+  background: center center / cover url(moscow.jpg) no-repeat;
+}
+
+.btn {
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+}
+
+.split h2 {
+  font-size: 24px;
+  font-style: italic;
+  color: azure;
+  opacity: 0.7;
+  position: absolute;
+  left: 40px;
+  bottom: 80px;
+  mix-blend-mode: overlay;
+}
+
+button {
+  font-family: "Bungee", cursive;
+  cursor: pointer;
+  color: azure;
+  padding: 4px 16px;
+  border: 3px solid azure;
+  background-color: transparent;
+  mix-blend-mode: soft-light;
+}
+
+.hover-left .left {
+  width: var(--hover-width);
+}
+
+.hover-left .right {
+  width: var(--other-width);
+}
+
+.hover-right .left {
+  width: var(--other-width);
+}
+
+.hover-right .right {
+  width: var(--hover-width);
+}

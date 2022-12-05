@@ -1,0 +1,75 @@
+body {
+  display: flex;
+  margin: 0;
+  padding: 40vh 0;
+  background: #3d7eaa; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffe47a,
+    #3d7eaa
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffe47a,
+    #3d7eaa
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  font-family: "Bahianita", cursive;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.search {
+  width: auto;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  letter-spacing: 5px;
+  text-align: center;
+}
+
+input {
+  background-color: aliceblue;
+  border: 0;
+  padding: 10px;
+  height: 50px;
+  width: 50px;
+  letter-spacing: 0.5px;
+  font-size: 18px;
+  font-family: "Barlow Condensed", sans-serif;
+  transition: all 0.3s;
+}
+
+.btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  border: 0px;
+  background-color: aliceblue;
+  padding-top: 5px;
+  font-size: 24px;
+  transition: all 0.3s;
+}
+
+input:focus,
+.btn:focus {
+  outline: 0;
+}
+
+section.active input {
+  width: 248px;
+}
+
+section.active .btn {
+  transform: translateX(198px);
+}

@@ -1,0 +1,40 @@
+body {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  font-family: "Josefin Sans", sans-serif;
+  text-align: center;
+  margin: 0 auto;
+  padding: 100px;
+  overflow-x: hidden;
+  background-color: purple;
+}
+
+h1 {
+  flex: 1 0 100%;
+  color: rgb(240, 255, 255);
+}
+
+.btn {
+  cursor: pointer;
+  color: purple;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(240, 255, 255);
+  text-transform: capitalize;
+}
+
+.btn::after {
+  content: " ♫";
+}
+
+span {
+  margin-top: 20px;
+  font-weight: 200;
+  color: rgba(240, 255, 255, 0.75);
+}

@@ -1,155 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet"> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&display=swap"
+      rel="stylesheet"
+    />
     <title>Day 7</title>
-    <style>
-
-        :root {
-            --hover-width: 60%;
-            --other-width: 40%;
-            --speed: 2500ms;
-        }
-
-        body {
-            font-family: 'Bungee', cursive;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            background-color: azure;
-        }
-
-        .container {
-            display: flex;
-            flex-flow: row nowrap;
-            height: 100vh;
-            position: relative;
-            background-color: #111;
-        }
-
-        .split {
-            position: absolute;
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-            transition: all var(--speed) cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .left {
-            left: 0;
-            box-shadow: inset 0 0 40px black;
-            filter: contrast(1.4);
-            background: bottom center / cover url(paris.jpg) no-repeat;
-        }
-        
-        .right {
-            right: 0;
-            box-shadow: inset 0 0 40px black;
-            background: center center / cover url(moscow.jpg) no-repeat;
-        }
-        
-        .btn {
-            position: absolute;
-            left: 40px;
-            bottom: 40px;
-        }
-
-        .split h2 {
-            font-size: 24px;
-            font-style: italic;
-            color: azure;
-            opacity: 0.7;
-            position: absolute;
-            left: 40px;
-            bottom: 80px;
-            mix-blend-mode: overlay; 
-        }
-
-        button {
-            font-family: 'Bungee', cursive;
-            cursor: pointer;
-            color: azure;
-            padding: 4px 16px;
-            border: 3px solid azure;
-            background-color: transparent;
-            mix-blend-mode: soft-light; 
-        }
-
-        .hover-left .left {
-            width: var(--hover-width);
-        }
-
-        .hover-left .right {
-            width: var(--other-width);
-        }
-
-        .hover-right .left {
-            width: var(--other-width);
-        }
-        
-        .hover-right .right {
-            width: var(--hover-width);
-        }
-
-    </style>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="container hover-right">
-        <div class="split left">
-            <h2>France, Paris</h2>
-            <h2>France, Paris</h2>
-            <h2>France, Paris</h2>
-            <h2>France, Paris</h2>
-            <button href="/" class="btn">Visit Now</button>
-            <button href="/" class="btn">Visit Now</button>
-            <button href="/" class="btn">Visit Now</button>
-        </div>
+      <div class="split left">
+        <h2>France, Paris</h2>
+        <h2>France, Paris</h2>
+        <h2>France, Paris</h2>
+        <h2>France, Paris</h2>
+        <button href="/" class="btn">Visit Now</button>
+        <button href="/" class="btn">Visit Now</button>
+        <button href="/" class="btn">Visit Now</button>
+      </div>
 
-        <div class="split right">
-            <h2>Russia, Moscow</h2>
-            <h2>Russia, Moscow</h2>
-            <h2>Russia, Moscow</h2>
-            <h2>Russia, Moscow</h2>
-            <button href="/" class="btn">Visit Now</button>
-            <button href="/" class="btn">Visit Now</button>
-            <button href="/" class="btn">Visit Now</button>
-        </div>
+      <div class="split right">
+        <h2>Russia, Moscow</h2>
+        <h2>Russia, Moscow</h2>
+        <h2>Russia, Moscow</h2>
+        <h2>Russia, Moscow</h2>
+        <button href="/" class="btn">Visit Now</button>
+        <button href="/" class="btn">Visit Now</button>
+        <button href="/" class="btn">Visit Now</button>
+      </div>
     </div>
-</body>
-<script>
-    const left = document.querySelector('.left');
-    const right = document.querySelector('.right');
-    const container = document.querySelector('.container');
-
-    let timer = setInterval(() => {
-        if (container.classList.contains('hover-left')) {
-            container.classList.remove('hover-left');
-            container.classList.add('hover-right');
-        } else if (container.classList.contains('hover-right')) {
-            container.classList.remove('hover-right');
-            container.classList.add('hover-left');
-        }
-    }, 8000);
-
-    left.addEventListener('mouseenter', () => {
-        container.classList.add('hover-left');
-    })
-
-    left.addEventListener('mouseleave', () => {
-        container.classList.remove('hover-left');
-    })
-
-    right.addEventListener('mouseenter', () => {
-        container.classList.add('hover-right');
-    })
-
-    right.addEventListener('mouseleave', () => {
-        container.classList.remove('hover-right');
-    })
-</script>
+  </body>
+  <script src="app.js"></script>
 </html>

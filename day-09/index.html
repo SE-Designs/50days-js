@@ -1,59 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet"> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>Day 9</title>
-    <style>
-
-        body {
-            display: flex;
-            flex-flow: row wrap;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Josefin Sans', sans-serif;
-            text-align: center;
-            margin: 0 auto;
-            padding: 100px;
-            overflow-x: hidden;
-            background-color: purple;
-        }
-
-        h1 {
-            flex: 1 0 100%;
-            color: rgb(240, 255, 255);
-        }
-
-        .btn {
-            cursor: pointer;
-            color: purple;
-            margin: 1rem;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            font-family: inherit;
-            border: none;
-            border-radius: 8px;
-            background-color: rgb(240, 255, 255);
-            text-transform: capitalize;
-        }
-
-        .btn::after {
-            content: ' ♫';
-        }
-
-        span {
-            margin-top: 20px;
-            font-weight: 200;
-            color: rgba(240, 255, 255, 0.75);
-        }
-
-    </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Sound Board</h1>
     <audio id="applause" src="sounds/sound-board_sounds_applause.mp3"></audio>
     <audio id="boo" src="sounds/sound-board_sounds_boo.mp3"></audio>
@@ -62,33 +22,10 @@
     <audio id="victory" src="sounds/sound-board_sounds_victory.mp3"></audio>
     <audio id="wrong" src="sounds/sound-board_sounds_wrong.mp3"></audio>
     <div id="buttons"></div>
-    <span>Sounds will play after click, if not, then allow the browser to play sounds and turn up the volume!</span>
-</body>
-<script>
-    const sounds = ['applause', 'boo', 'gasp', 'tada', 'victory', 'wrong']
-
-    sounds.forEach(sound => {
-        const btn = document.createElement('button')
-        btn.classList.add('btn')
-
-        btn.innerText = sound
-
-        btn.addEventListener('click', () => {
-            stopSongs();
-
-            document.getElementById(sound).play();
-        })
-
-        document.getElementById('buttons').appendChild(btn)
-    })
-
-    function stopSongs() {
-        sounds.forEach(sound => {
-            const song = document.getElementById(sound)
-
-            song.pause();
-            song.currentTime = 0;
-        })
-    }
-</script>
+    <span
+      >Sounds will play after click, if not, then allow the browser to play
+      sounds and turn up the volume!</span
+    >
+  </body>
+  <script src="app.js"></script>
 </html>

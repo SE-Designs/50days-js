@@ -1,103 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bahianita&family=Barlow+Condensed:wght@400&display=swap" rel="stylesheet"> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bahianita&family=Barlow+Condensed:wght@400&display=swap"
+      rel="stylesheet"
+    />
     <title>Day 4</title>
-    <style>
-
-        body {
-            display: flex;
-            margin: 0;
-            padding: 40vh 0;
-            background: #3D7EAA;  /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #FFE47A, #3D7EAA);  /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #FFE47A, #3D7EAA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-            font-family: 'Bahianita', cursive;
-            overflow: hidden;
-            height: 100vh;
-        }
-
-        .search {
-            width: auto;
-            position: relative;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        h1 {
-            position: absolute;
-            top: 20px;
-            left: 0;
-            width: 100%;
-            letter-spacing: 5px;
-            text-align: center;
-        }
-
-        input {
-            background-color: aliceblue;
-            border: 0;
-            padding: 10px;
-            height: 50px;
-            width: 50px;
-            letter-spacing: 0.5px;
-            font-size: 18px;
-            font-family: 'Barlow Condensed', sans-serif;
-            transition: all .3s;
-        }
-
-        .btn {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 50px;
-            width: 50px;
-            cursor: pointer;
-            border: 0px;
-            background-color: aliceblue;
-            padding-top: 5px;
-            font-size: 24px;
-            transition: all .3s;
-        }
-        
-        input:focus, .btn:focus{
-            outline: 0;
-        }
-
-        section.active input {
-            width: 248px;
-        }
-
-        section.active .btn {
-            transform: translateX(198px);
-        }
-
-    </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Hidden Search</h1>
     <section class="search">
-        <input type="search" name="search" id="search">
-        <button class="btn">
-            <i class='bx bx-search'></i>
-        </button>
+      <input type="search" name="search" id="search" />
+      <button class="btn">
+        <i class="bx bx-search"></i>
+      </button>
     </section>
-</body>
-<script>
-    const search = document.querySelector('.search');
-    const btn = document.querySelector('.btn');
-    const input = document.querySelector('#search');
-
-    btn.addEventListener('click', () => {
-        search.classList.toggle('active');
-        input.focus();
-        input.placeholder = 'Search...'
-    })
-</script>
+  </body>
 </html>
