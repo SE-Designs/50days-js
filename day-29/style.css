@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 100vh;
+  font-family: "Oswald", sans-serif;
+  color: aliceblue;
+  background: linear-gradient(#181a1b, #050a23);
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+small {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.ri-heart-fill {
+  color: rgb(240, 30, 30);
+}
+
+span {
+  color: rgb(240, 30, 30);
+}
+
+.image {
+  position: relative;
+  cursor: pointer;
+  max-width: 720px;
+  width: 90%;
+  min-height: 400px;
+  background: center / contain
+    url("https://www.goodwood.com/globalassets/.road--racing/road/news/2020/8-august/best-mitsubishis/seven-best-mitsubishis-ever-made-6-mitsubishi-evo-vii-tommi-makinen-goodwood-31072020.jpg?crop=(0,135,2600,1598)&width=1600")
+    no-repeat;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+}
+
+.image .ri-heart-fill {
+  position: absolute;
+  animation: grow 0.6s ease;
+  transform: translate(-50%, -50%) scale(0);
+}
+
+@keyframes grow {
+  to {
+    transform: translate(-50%, -50%) scale(10);
+    opacity: 0;
+  }
+}
