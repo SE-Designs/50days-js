@@ -10,61 +10,8 @@
       href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="style.css" />
     <title>Day 21</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        display: flex;
-        flex-flow: row wrap;
-        align-items: center;
-        justify-content: space-around;
-        font-weight: 700;
-        font-family: "Share Tech Mono", monospace;
-        text-align: center;
-        width: 100vw;
-        padding: 0 40px;
-        min-height: 100vh;
-        overflow-x: hidden;
-        color: aliceblue;
-        background: radial-gradient(closest-side, #fd8822, #aecbe3) no-repeat;
-      }
-
-      .empty {
-        min-width: 150px;
-        min-height: 150px;
-        margin: 20px;
-        border-radius: 4px;
-        border: 3px solid rgba(0, 0, 0, 0.4);
-        background-color: rgba(255, 255, 255, 0.2);
-      }
-
-      .fill {
-        cursor: pointer;
-        width: 145px;
-        height: 145px;
-        border-radius: 2px;
-        background-image: url("https://source.unsplash.com/random/150x150");
-      }
-
-      .hold {
-        border: 4px solid #ccc;
-      }
-
-      .hovered {
-        border-style: dashed;
-        border-color: rgba(0, 0, 0, 0.7);
-        background-color: rgba(255, 255, 255, 0.4);
-      }
-
-      @media only screen and (max-width: 1020px) {
-        body {
-          flex-flow: column wrap;
-        }
-      }
-    </style>
   </head>
   <body>
     <div class="empty">
@@ -75,46 +22,5 @@
     <div class="empty"></div>
     <div class="empty"></div>
   </body>
-  <script>
-    const fill = document.querySelector(".fill");
-    const empties = document.querySelectorAll(".empty");
-
-    fill.addEventListener("dragstart", dragStart);
-    fill.addEventListener("dragend", dragEnd);
-
-    for (const empty of empties) {
-      empty.addEventListener("dragenter", dragEnter);
-      empty.addEventListener("dragover", dragOver);
-      empty.addEventListener("dragleave", dragLeave);
-      empty.addEventListener("drop", dragDrop);
-    }
-
-    function dragStart() {
-      this.className += " hold";
-
-      setTimeout(() => (this.className = "invisible"), 0);
-    }
-
-    function dragEnd() {
-      this.className = "fill";
-    }
-
-    function dragEnter(e) {
-      e.preventDefault();
-      this.className += " hovered";
-    }
-
-    function dragOver(e) {
-      e.preventDefault();
-    }
-
-    function dragLeave() {
-      this.className = "empty";
-    }
-
-    function dragDrop() {
-      this.className = "empty";
-      this.append(fill);
-    }
-  </script>
+  <script src="app.js"></script>
 </html>

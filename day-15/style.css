@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  color: #eafbff;
+  background-color: #eafbff;
+  background: linear-gradient(30deg, #16f4d0, #153b50) no-repeat;
+}
+
+h1 {
+  display: block;
+  width: 100vw;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.counter-container {
+  margin: 20px;
+  align-self: flex-start;
+  font-size: 1.25rem;
+}
+
+.counter {
+  font-size: 1.5rem;
+}
+
+span {
+  font-weight: 400;
+}

@@ -10,50 +10,8 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="style.css" />
     <title>Day 15</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        display: flex;
-        flex-flow: row wrap;
-        align-items: center;
-        justify-content: center;
-        font-family: "Roboto Mono", monospace;
-        font-weight: 600;
-        text-align: center;
-        margin: 0 auto;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-        color: #eafbff;
-        background-color: #eafbff;
-        background: linear-gradient(30deg, #16f4d0, #153b50) no-repeat;
-      }
-
-      h1 {
-        display: block;
-        width: 100vw;
-        font-size: 2rem;
-        margin: 0;
-      }
-
-      .counter-container {
-        margin: 20px;
-        align-self: flex-start;
-        font-size: 1.25rem;
-      }
-
-      .counter {
-        font-size: 1.5rem;
-      }
-
-      span {
-        font-weight: 400;
-      }
-    </style>
   </head>
   <body>
     <h1>Social Number of Followers</h1>
@@ -75,26 +33,5 @@
       <span>Discord Chatters</span>
     </div>
   </body>
-  <script>
-    const counters = document.querySelectorAll(".counter");
-
-    counters.forEach((counter) => {
-      counter.innerText = "0";
-
-      const updateCounter = () => {
-        const target = +counter.getAttribute("data-target");
-        const c = +counter.innerText;
-
-        const increment = target / 77;
-
-        if (c < target) {
-          counter.innerText = `${Math.ceil(c + increment)}`;
-          setTimeout(updateCounter, 1);
-        } else {
-          counter.innerText = target;
-        }
-      };
-      updateCounter();
-    });
-  </script>
+  <script src="app.js"></script>
 </html>
